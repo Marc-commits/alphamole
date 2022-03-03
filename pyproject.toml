@@ -16,8 +16,9 @@ classifiers = [
 Changelog = "https://github.com/marc-commits/advancedlabcourse-utils/releases"
 
 [tool.poetry.dependencies]
-python = "^3.7"
+python = "^3.9"
 click = ">=8.0.1"
+pymol = {path = "bin/pymol-2.6.0a0-cp39-cp39-win_amd64.whl"}
 
 [tool.poetry.dev-dependencies]
 Pygments = ">=2.10.0"
