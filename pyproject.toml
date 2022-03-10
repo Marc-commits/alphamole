@@ -22,6 +22,7 @@ pymol = {path = "bin/pymol-2.6.0a0-cp39-cp39-win_amd64.whl"}
 
 [tool.poetry.dev-dependencies]
 Pygments = ">=2.10.0"
+bandit = "1.7.2"
 black = ">=21.10b0"
 coverage = {extras = ["toml"], version = ">=6.2"}
 darglint = ">=1.8.1"
