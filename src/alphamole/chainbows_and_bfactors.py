@@ -1,9 +1,11 @@
 #! python3
 """Creates chainbows- and b-factors- .pse."""
 
-from constants import _TRIM_NAMES
 from pymol import cmd
 from pymol import util
+
+
+_TRIM_NAMES = len("ranked_*")
 
 
 @cmd.extend

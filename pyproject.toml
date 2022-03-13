@@ -49,6 +49,9 @@ myst-parser = {version = ">=0.16.1"}
 
 [tool.poetry.scripts]
 alphamole = "alphamole.__main__:main"
+super_pdbs = "alphamole.super_pdbs:super_pdbs"
+chainbows_and_bfactors = "alphamole.chainbows_and_bfactors:chainbows_and_bfactors"
+remove_gly = "alphamole.remove_gly:remove_gly_linker"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]

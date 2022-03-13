@@ -1,8 +1,10 @@
 #! python3
 """Supers pdb-files."""
 
-from constants import _TRIM_NAMES
 from pymol import cmd
+
+
+_TRIM_NAMES = len("ranked_*")
 
 
 @cmd.extend
