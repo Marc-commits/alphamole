@@ -1,22 +1,30 @@
 #! python3
 """Supers pdb-files."""
 
+from constants import _TRIM_NAMES
 from pymol import cmd
+
+
+@cmd.extend
+def _super_pdbs(
+    reference_model: str = "ranked_0", trim_names: int = _TRIM_NAMES, **kwargs
+) -> None:
+    """Renames objects and supers them."""
+    for obj in cmd.get_object_list():
+        cmd.set_name(obj, obj[:trim_names])
+    cmd.extra_fit(reference=reference_model, method="super", **kwargs)
 
 
 @cmd.extend
 def super_pdbs(
     selection: str = "ranked_*.pdb",
-    reference_model: str = "ranked_0",
     save: bool = True,
     output: str = "{name}_gly.pdb",
-    trim_names: int = 8,
+    **kwargs
 ) -> None:
-    """Loads all pdbs, renames, calls super and saves."""
+    """Loads selection, calls _super_pdbs and saves."""
     cmd.loadall(selection)
-    for obj in cmd.get_object_list():
-        cmd.set_name(obj, obj[:trim_names])
-    cmd.extra_fit(reference=reference_model, method="super")
+    _super_pdbs(**kwargs)
     if save:
         cmd.multifilesave(output)
 
