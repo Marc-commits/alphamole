@@ -1,19 +1,19 @@
 [tool.poetry]
-name = "advancedlabcourse-utils"
+name = "alphamole"
 version = "0.0.0"
-description = "Advancedlabcourse Utils"
+description = "Alphamole"
 authors = ["Marc Broghammer <marc.broghammer@gmx.de>"]
 license = "GPL-3.0"
 readme = "README.md"
-homepage = "https://github.com/marc-commits/advancedlabcourse-utils"
-repository = "https://github.com/marc-commits/advancedlabcourse-utils"
-documentation = "https://advancedlabcourse-utils.readthedocs.io"
+homepage = "https://github.com/marc-commits/alphamole"
+repository = "https://github.com/marc-commits/alphamole"
+documentation = "https://alphamole.readthedocs.io"
 classifiers = [
     "Development Status :: 1 - Planning",
 ]
 
 [tool.poetry.urls]
-Changelog = "https://github.com/marc-commits/advancedlabcourse-utils/releases"
+Changelog = "https://github.com/marc-commits/alphamole/releases"
 
 [tool.poetry.dependencies]
 python = "^3.9"
@@ -48,7 +48,7 @@ xdoctest = {extras = ["colors"], version = ">=0.15.10"}
 myst-parser = {version = ">=0.16.1"}
 
 [tool.poetry.scripts]
-advancedlabcourse-utils = "advancedlabcourse_utils.__main__:main"
+alphamole = "alphamole.__main__:main"
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]
@@ -56,7 +56,7 @@ tests = ["tests", "*/tests"]
 
 [tool.coverage.run]
 branch = true
-source = ["advancedlabcourse_utils", "tests"]
+source = ["alphamole", "tests"]
 
 [tool.coverage.report]
 show_missing = true
