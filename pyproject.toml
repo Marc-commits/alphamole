@@ -54,6 +54,7 @@ super_pdbs = "alphamole.super_pdbs:super_pdbs"
 chainbows_and_bfactors = "alphamole.chainbows_and_bfactors:chainbows_and_bfactors"
 remove_gly_linker = "alphamole.remove_gly_linker:remove_gly_linker"
 alter_chains = "alphamole.alter_chains:alter_chains"
+color_prots = "alphamole.color_prots:color_protsgit "
 
 [tool.coverage.paths]
 source = ["src", "*/site-packages"]

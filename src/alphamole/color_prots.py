@@ -1,10 +1,17 @@
 #! python3
-"""Colors a sequence with provided color."""
+"""Colors a sequence with provided color.
+
+Idea: Florian Schneider, 16.03.2022
+"""
+
+from collections import Counter
+from collections import OrderedDict
 
 from pymol import cmd
 
 
-NIFB = """
+NIFB = "".join(
+    """
 MELSVLGQNNGGQHSAGGCSSSSCGSTHDQLSHLPENIRAKVQNHPCYSEEAHHYFARM
 HVAVAPACNIQCHYCNRKYDCANESRPGVVSEVLTPEQAVKKVKAVAAAIPQMSVLGIA
 GPGDPLANPKRTLDTFRMLSEQAPDIKLCVSTNGLALPECVEELAKHNIDHVTITINCV
@@ -14,37 +21,58 @@ RHCRQCRADAVGMLGEDRGDEFTLDKIESMEIDYEAAMVKRAAIHAAIKEELDEKAAKK
 ERLAGLSVASVQNGTSGRYRPVLMAVATSGGGLINQHFGHATEFLVYEASPSGVRFIGH
 RRVDQYCVGNDTCGEKESALAGSIRALKGCEAVLCSKIGFEPWSDLETAGIQPNGEHAM
 EPIEEAVMAVYREMIESGRLENDGALLQAKA
-"""
-NIFBX = """
+""".split(
+        "\n"
+    )
+)
+NIFBX = "".join(
+    """
 MEIDYEAAMVKRAAIHAAIKEELDEKAAKKERLAGLSVASVQNGTSGRYRPVLMAVATS
 GGGLINQHFGHATEFLVYEASPSGVRFIGHRRVDQYCVGNDTCGEKESALAGSIRALKG
 CEAVLCSKIGFEPWSDLETAGIQPNGEHAMEPIEEAVMAVYREMIESGRLENDGAL
 LQAKA
-"""
-NIFBDELTABX = """
+""".split(
+        "\n"
+    )
+)
+NIFBDELTABX = "".join(
+    """
 MELSVLGQNNGGQHSAGGCSSSSCGSTHDQLSHLPENIRAKVQNHPCYSEEAHHYFARM
 HVAVAPACNIQCHYCNRKYDCANESRPGVVSEVLTPEQAVKKVKAVAAAIPQMSVLGIA
 GPGDPLANPKRTLDTFRMLSEQAPDIKLCVSTNGLALPECVEELAKHNIDHVTITINCV
 DPEIGAKIYPWIYWNNKRIRGVKAAKILIEQQQKGLEMLVARGILVKVNSVMIPGVNDE
 HLKEVSKIVKAKGAFLHNVMPLIAEPEHGTFYGVMGQRSPEPEELQDLQDACAGDMNMM
 RHCRQCRADAVGMLGEDRGDEFTLDKIES
-"""
-NAFV = """
+""".split(
+        "\n"
+    )
+)
+NAFV = "".join(
+    """
 MALKIVESCVNCWACVDVCPSEAISLAGPHFEISASKCTECDGDYAEKQCASICPVEGA
 ILLADGTPANPPGSLTGIPPERLAEAMREIQAR
-"""
-NAFF = """
+""".split(
+        "\n"
+    )
+)
+NAFF = "".join(
+    """
 MITLTESAKSAVTRFISSTGKPIAGLRIRVEGGGCSGLKYSLKLEEAGAEDDQLVDCDG
 ITLLIDSASAPLLDGVTMDFVESMEGSGFTFVNPNATNSCGCGKSFAC
-"""
+""".split(
+        "\n"
+    )
+)
 
-SEQUENCES = {
-    "nifb": (NIFB, "bluewhite"),
-    "nifbx": (NIFBX, "limegreen"),
-    "nifbdeltabx": (NIFBDELTABX, "deepteal"),
-    "nafv": (NAFV, "firebrick"),
-    "naff": (NAFF, "deeppurple"),
-}
+SEQUENCES = OrderedDict(
+    {
+        "nifb": (NIFB, "bluewhite"),
+        "nifbdeltabx": (NIFBDELTABX, "deepteal"),
+        "nifbx": (NIFBX, "limegreen"),
+        "nafv": (NAFV, "firebrick"),
+        "naff": (NAFF, "deeppurple"),
+    }
+)
 
 
 @cmd.extend
@@ -64,10 +92,17 @@ def color_prot(name: str, color: str = "") -> None:
 
 
 @cmd.extend
-def color_prots() -> None:
+def color_prots(unique_sequences: bool = True, mapping: dict = SEQUENCES) -> None:
     """Colors known sequences with default colors."""
-    for protein in SEQUENCES:
-        color_prot(protein)
+    if unique_sequences:
+        for protein, (sequence, color) in mapping.items():
+            sequences = [i[1][0] for i in mapping.items()]
+            sequence_in_mapping = Counter([sequence in j for j in sequences])[True]
+            if not sequence_in_mapping > 1:
+                color_prot(protein, color)
+    else:
+        for protein in mapping:
+            color_prot(protein)
 
 
 if __name__ == "__main__":
