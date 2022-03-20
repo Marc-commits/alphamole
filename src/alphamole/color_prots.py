@@ -92,8 +92,14 @@ def color_prot(name: str, color: str = "") -> None:
 
 
 @cmd.extend
-def color_prots(unique_sequences: bool = True, mapping: dict = SEQUENCES) -> None:
+def color_prots(
+    selection: str,
+    output: str = "colored_prots.pse",
+    unique_sequences: bool = True,
+    mapping: dict = SEQUENCES,
+) -> None:
     """Colors known sequences with default colors."""
+    cmd.loadall(selection)
     if unique_sequences:
         for protein, (sequence, color) in mapping.items():
             sequences = [i[1][0] for i in mapping.items()]
@@ -103,7 +109,9 @@ def color_prots(unique_sequences: bool = True, mapping: dict = SEQUENCES) -> Non
     else:
         for protein in mapping:
             color_prot(protein)
+    if output:
+        cmd.save(output)
 
 
 if __name__ == "__main__":
-    color_prots()
+    color_prots("*.pdb")

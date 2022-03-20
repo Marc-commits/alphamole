@@ -33,17 +33,16 @@ def _alter_chains(
 
 @cmd.extend
 def alter_chains(
-    selection: str = "ranked_*_-gly.pdb",
-    save: bool = True,
-    output: str = "{name}_-gly.pdb",
+    selection: str,
+    output: str = "{name}.pdb",
     **kwargs,
 ) -> None:
     """Loads selection, calls _alter_chains and saves pdbs."""
     cmd.loadall(selection)
     _alter_chains(**kwargs)
-    if save:
+    if output:
         cmd.multifilesave(output)
 
 
 if __name__ == "__main__":
-    alter_chains()
+    alter_chains("*.pdb")

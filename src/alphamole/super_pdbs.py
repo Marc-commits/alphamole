@@ -18,18 +18,13 @@ def _super_pdbs(
 
 
 @cmd.extend
-def super_pdbs(
-    selection: str = "ranked_*.pdb",
-    save: bool = True,
-    output: str = "{name}_gly.pdb",
-    **kwargs
-) -> None:
+def super_pdbs(selection: str, output: str = "{name}.pdb", **kwargs) -> None:
     """Loads selection, calls _super_pdbs and saves."""
     cmd.loadall(selection)
     _super_pdbs(**kwargs)
-    if save:
+    if output:
         cmd.multifilesave(output)
 
 
 if __name__ == "__main__":
-    super_pdbs()
+    super_pdbs("*.pdb")

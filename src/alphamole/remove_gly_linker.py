@@ -17,17 +17,16 @@ def _remove_gly_linker(length: int = 20, trim_names: int = _TRIM_NAMES) -> None:
 
 @cmd.extend
 def remove_gly_linker(
-    selection: str = "ranked_*_gly.pdb",
-    save: bool = True,
-    output: str = "{name}_-gly.pdb",
+    selection: str,
+    output: str = "{name}.pdb",
     **kwargs,
 ) -> None:
     """Loads selection, calls _remove_gly_linker and saves pdbs."""
     cmd.loadall(selection)
     _remove_gly_linker(**kwargs)
-    if save:
+    if output:
         cmd.multifilesave(output)
 
 
 if __name__ == "__main__":
-    remove_gly_linker()
+    remove_gly_linker("*.pdb")

@@ -23,17 +23,14 @@ def _chainbows_and_bfactors(
 
 @cmd.extend
 def chainbows_and_bfactors(
-    selection: str = "ranked_*_gly.pdb",
-    save: bool = True,
-    output: str = "model_gly.pse",
-    **kwargs
+    selection: str, output: str = "chainbows_and_bfactors.pse", **kwargs
 ) -> None:
     """Loads selection, calls _chainbows_and_bfactors and saves as .pse."""
     cmd.loadall(selection)
     _chainbows_and_bfactors(selection, **kwargs)
-    if save:
+    if output:
         cmd.save(output)
 
 
 if __name__ == "__main__":
-    chainbows_and_bfactors()
+    chainbows_and_bfactors("*.pdb")
