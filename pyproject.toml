@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "alphamole"
-version = "0.1.0"
+version = "0.1.1"
 description = "Alphamole"
 authors = ["Marc Broghammer <marc.broghammer@gmx.de>"]
 license = "GPL-3.0"
