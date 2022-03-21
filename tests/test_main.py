@@ -2,7 +2,7 @@
 import pytest
 from click.testing import CliRunner
 
-from advancedlabcourse_utils import __main__
+from alphamole import __main__
 
 
 @pytest.fixture
