@@ -12,12 +12,12 @@ from . import super_pdbs
 @click.version_option()
 def main() -> None:
     """Alphamole."""
-    super_pdbs("ranked_*.pdb", output="{name}_gly.pdb")
-    remove_gly_linker("ranked_*_gly.pdb", output="{name}_-gly.pdb")
-    alter_chains("ranked_*_-gly.pdb", output="{name}_-gly.pdb")
-    super_pdbs("ranked_*_-gly.pdb", output="{name}_-gly.pdb")
-    chainbows_and_bfactors("ranked_*_-gly.pdb")
-    color_prots("ranked_*_-gly.pdb")
+    super_pdbs.super_pdbs("ranked_*.pdb", output="{name}_gly.pdb")
+    remove_gly_linker.remove_gly_linker("ranked_*_gly.pdb", output="{name}_-gly.pdb")
+    alter_chains.alter_chains("ranked_*_-gly.pdb", output="{name}_-gly.pdb")
+    super_pdbs.super_pdbs("ranked_*_-gly.pdb", output="{name}_-gly.pdb")
+    chainbows_and_bfactors.chainbows_and_bfactors("ranked_*_-gly.pdb")
+    color_prots.color_prots("ranked_*_-gly.pdb")
 
 
 if __name__ == "__main__":
