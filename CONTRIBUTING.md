@@ -12,9 +12,9 @@ Here is a list of important resources for contributors:
 - [Code of Conduct]
 
 [gpl 3.0 license]: https://opensource.org/licenses/GPL-3.0
-[source code]: https://github.com/marc-commits/advancedlabcourse-utils
-[documentation]: https://advancedlabcourse-utils.readthedocs.io/
-[issue tracker]: https://github.com/marc-commits/advancedlabcourse-utils/issues
+[source code]: https://github.com/marc-commits/alphamole
+[documentation]: https://alphamole.readthedocs.io/
+[issue tracker]: https://github.com/marc-commits/alphamole/issues
 
 ## How to report a bug
 
@@ -54,7 +54,7 @@ or the command-line interface:
 
 ```console
 $ poetry run python
-$ poetry run advancedlabcourse-utils
+$ poetry run alphamole
 ```
 
 [poetry]: https://python-poetry.org/
@@ -108,7 +108,7 @@ $ nox --session=pre-commit -- install
 It is recommended to open an issue before starting work on anything.
 This will allow a chance to talk it over with the owners and validate your approach.
 
-[pull request]: https://github.com/marc-commits/advancedlabcourse-utils/pulls
+[pull request]: https://github.com/marc-commits/alphamole/pulls
 
 <!-- github-only -->
 
